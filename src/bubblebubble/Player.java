@@ -158,16 +158,6 @@ public class Player extends JLabel implements Initable{
 								} catch (InterruptedException e) {
 									e.printStackTrace();
 								}
-							}else if(floor>3) {
-								for(int z=0;z<145;z++) {
-									y++;
-									setLocation(x,y); // 내부에 repaint()가 존재 따로 안해도 됨
-									try {
-										Thread.sleep(5);
-									} catch (InterruptedException e) {
-										e.printStackTrace();
-									}
-								}
 							}
 						}
 					}else if(x<190||x>760) {
