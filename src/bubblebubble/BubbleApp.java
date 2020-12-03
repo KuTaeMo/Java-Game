@@ -16,6 +16,8 @@ public class BubbleApp extends JFrame implements Initable{
 	
 	private JLabel laBackground;
 	private Player player;
+	private Monster monster;
+	private MonsterMove monsterMove;
 	
 	public BubbleApp() {
 		init();
@@ -23,28 +25,33 @@ public class BubbleApp extends JFrame implements Initable{
 		batch();
 		listener();
 		
+		//monsterMove.start();
+		
 		setVisible(true);
 	}
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		laBackground=new JLabel(new ImageIcon("images/bg.png"));
+		laBackground=new JLabel(new ImageIcon("images/imgTestBG.png"));
 		player=new Player();
+		monster=new Monster();
 	}
 	@Override
 	public void setting() {
 		// TODO Auto-generated method stub
 		setTitle("버블버블");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000,639);
+		setSize(1280,720);
 		setLayout(null);
 		setContentPane(laBackground);
+
 	}
 
 	@Override
 	public void batch() {
 		// TODO Auto-generated method stub
 		add(player);
+		add(monster);
 	}
 
 	@Override
@@ -78,5 +85,4 @@ public class BubbleApp extends JFrame implements Initable{
 	public static void main(String[] args) {
 		new BubbleApp();
 	}
-
 }

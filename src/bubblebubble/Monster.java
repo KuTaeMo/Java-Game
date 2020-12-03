@@ -3,14 +3,14 @@ package bubblebubble;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Player extends JLabel implements Initable{
+public class Monster extends JLabel implements Initable{
 	
-	public Player player=this;
-	public final static String TAG="Player : ";
+	public Monster monster=this;
+	public final static String TAG="Monster : ";
 	
 	public ImageIcon icPlayerR, icPlayerL;
-	public int x= 55;
-	public int y=470;
+	public int x= 200;
+	public int y=490;
 	
 	public boolean isRight=false; //ป๓ลย
 	public boolean isLeft=false;
@@ -18,7 +18,7 @@ public class Player extends JLabel implements Initable{
 	
 	public int floor=1; // 535, 2f = 415, 3f=295, 4f=177
 	
-	public Player() {
+	public Monster() {
 		icPlayerR=new ImageIcon("images/imgStayR.png");
 		icPlayerL=new ImageIcon("images/imgStayL.png");
 		setIcon(icPlayerR);
