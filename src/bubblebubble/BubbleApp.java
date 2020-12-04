@@ -34,7 +34,7 @@ public class BubbleApp extends JFrame implements Initable{
 		// TODO Auto-generated method stub
 		laBackground=new JLabel(new ImageIcon("images/imgTestBG.png"));
 		player=new Player();
-		monster=new Monster();
+		//monster=new Monster();
 	}
 	@Override
 	public void setting() {
@@ -51,7 +51,7 @@ public class BubbleApp extends JFrame implements Initable{
 	public void batch() {
 		// TODO Auto-generated method stub
 		add(player);
-		add(monster);
+		//add(monster);
 	}
 
 	@Override
