@@ -15,7 +15,9 @@ public class BubbleApp extends JFrame implements Initable{
 	private static final String TAG="BubbleApp : ";
 	
 	private JLabel laBackground;
-	private Player player;
+	//private Player player;
+	//private Player2 player2;
+	private Player3 player;
 	private Monster monster;
 	private MonsterMove monsterMove;
 	
@@ -33,7 +35,8 @@ public class BubbleApp extends JFrame implements Initable{
 	public void init() {
 		// TODO Auto-generated method stub
 		laBackground=new JLabel(new ImageIcon("images/imgTestBG.png"));
-		player=new Player();
+		player=new Player3();
+		//player2=new Player2();
 		//monster=new Monster();
 	}
 	@Override
@@ -51,6 +54,7 @@ public class BubbleApp extends JFrame implements Initable{
 	public void batch() {
 		// TODO Auto-generated method stub
 		add(player);
+		//add(player2);
 		//add(monster);
 	}
 
@@ -62,21 +66,26 @@ public class BubbleApp extends JFrame implements Initable{
 		public void keyPressed(KeyEvent e) {
 			if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
 				player.moveRight();
+				//player2.moveRight();
 			}else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 				player.moveLeft();
+				//player2.moveLeft();
 			}else if(e.getKeyCode()==KeyEvent.VK_SPACE) {
-				//player.moveUp();
 				player.moveJump();
+				//player2.moveUp();
 			}
 		}
 		@Override
 			public void keyReleased(KeyEvent e) {
 			if(e.getKeyCode()==KeyEvent.VK_RIGHT) {
 				player.isRight=false;
+				//player2.isRight=false;
 			}else if(e.getKeyCode()==KeyEvent.VK_LEFT) {
 				player.isLeft=false;
+				//player2.isLeft=false;
 			}else if(e.getKeyCode()==KeyEvent.VK_SPACE) {
 				player.isJump=false;
+				//player2.isJump=false;
 			}
 			}
 		});

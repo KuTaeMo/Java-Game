@@ -3,22 +3,23 @@ package bubblebubble;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Player extends JLabel implements Initable, floorHeight {
+public class Player3 extends JLabel implements Initable, floorHeight {
 
-   public Player player = this;
+   public Player3 player = this;
    public final static String TAG = "Player : ";
 
    public ImageIcon icPlayerR, icPlayerL;
    public int x = 55;
    public int y = 470;
-
+   
+   public boolean jumpState=false;
    public boolean isRight = false; // »óÅÂ
    public boolean isLeft = false;
    public boolean isJump = false;
-
+   
    public int floor = floorHeight.floor1; // 470 / 2f = 328 / 3f = 183 / 4f = 38
 
-   public Player() {
+   public Player3() {
       icPlayerR = new ImageIcon("images/imgStayR.png");
       icPlayerL = new ImageIcon("images/imgStayL.png");
       setIcon(icPlayerR);
@@ -51,65 +52,73 @@ public class Player extends JLabel implements Initable, floorHeight {
    }
 
    public void moveRangeR() {
-      if (floor == floorHeight.floor1) { // 1ÃþÀÏ ¶§
-         x++;
-      } else if (floor == floorHeight.floor2) { // 2ÃþÀÏ ¶§
-         if ((x >= 108 && x <= 600) || (x >= 891 && x <= 1178)) {
-            x++;
-         } else if (x < 108 || (x > 600) || (x < 891 || x >= 1178)) {
-            floor = floorHeight.floor1; // 1ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         }
-      } else if (floor == floorHeight.floor3) { // 3ÃþÀÏ ¶§
-         if (x >= 108 && x <= 955) {
-            x++;
-         } else if (x < 108 || x > 955) {
-            floor = floorHeight.floor2; // 3Ãþ¿¡¼­ 2ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         }
-      } else if (floor == floorHeight.floor4) {
-         if (x >= 108 && x <= 600) {
-            x++;
-         } else if (x < 108) {
-            floor = floorHeight.floor1; // 4Ãþ¿¡¼­ 1ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         } else if (x > 600) {
-            floor = floorHeight.floor3; // 4Ãþ¿¡¼­ 3ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         }
-      }
+	   if (floor == floorHeight.floor1) { // 1ÃþÀÏ ¶§
+	         x++;
+	      } else if (floor == floorHeight.floor2) { // 2ÃþÀÏ ¶§
+	         if ((x >= 108 && x <= 600) || (x >= 891 && x <= 1178)) {
+	            x++;
+	         } else if (x < 108 || (x > 600) || (x < 891 || x >= 1178)) {
+	        	 if(!jumpState) {
+	        		 floor = floorHeight.floor1; // 1ÃþÀ¸·Î ¶³¾îÁü
+	        		 moveDown(floor);
+	        	 }
+	         }
+	      } else if (floor == floorHeight.floor3) { // 3ÃþÀÏ ¶§
+	         if (x >= 108 && x <= 955) {
+	            x++;
+	         } else if (x < 108 || x > 955) {
+	            floor = floorHeight.floor2; // 3Ãþ¿¡¼­ 2ÃþÀ¸·Î ¶³¾îÁü
+	            if(!jumpState) 
+	            	moveDown(floor);
+	         }
+	      } else if (floor == floorHeight.floor4) {
+	         if (x >= 108 && x <= 600) {
+	            x++;
+	         } else if (x < 108) {
+	            floor = floorHeight.floor1; // 4Ãþ¿¡¼­ 1ÃþÀ¸·Î ¶³¾îÁü
+	            moveDown(floor);
+	         } else if (x > 600) {
+	            floor = floorHeight.floor3; // 4Ãþ¿¡¼­ 3ÃþÀ¸·Î ¶³¾îÁü
+	            if(!jumpState) 
+	            	moveDown(floor);
+	         }
+	      }
    }
 
    public void moveRangeL() {
-      if (floor == floorHeight.floor1) { // 1ÃþÀÏ ¶§
-    	  if(x>=0&&x<=1280) {
-    		  x--;
-    	  }
-      } else if (floor == floorHeight.floor2) { // 2ÃþÀÏ ¶§
-         if ((x >= 108 && x <= 600) || (x >= 891 && x <= 1178)) {
-            x--;
-         } else if (x < 108 || (x > 600) || (x < 891 || x >= 1178)) {
-            floor = floorHeight.floor1; // 1ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         }
-      } else if (floor == floorHeight.floor3) { // 3ÃþÀÏ ¶§
-         if (x >= 108 && x <= 955) {
-            x--;
-         } else if (x < 108 || x > 955) {
-            floor = floorHeight.floor2; // 3Ãþ¿¡¼­ 2ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         }
-      } else if (floor == floorHeight.floor4) {
-         if (x >= 108 && x <= 600) {
-            x--;
-         } else if (x < 108) {
-            floor = floorHeight.floor3; // 4Ãþ¿¡¼­ 1ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         } else if (x > 600) {
-            floor = floorHeight.floor3; // 4Ãþ¿¡¼­ 3ÃþÀ¸·Î ¶³¾îÁü
-            moveDown(floor);
-         }
-      }
+	      if (floor == floorHeight.floor1) { // 1ÃþÀÏ ¶§
+	    	  if(x>=0&&x<=1280) {
+	    		  x--;
+	    	  }
+	      } else if (floor == floorHeight.floor2) { // 2ÃþÀÏ ¶§
+	         if ((x >= 108 && x <= 600) || (x >= 891 && x <= 1178)) {
+	            x--;
+	         } else if (x < 108 || (x > 600) || (x < 891 || x >= 1178)) {
+	        	 if(!jumpState) {
+	        		 floor = floorHeight.floor1; // 1ÃþÀ¸·Î ¶³¾îÁü
+	        		 moveDown(floor);
+	        	 }
+	         }
+	      } else if (floor == floorHeight.floor3) { // 3ÃþÀÏ ¶§
+	         if (x >= 108 && x <= 955) {
+	            x--;
+	         } else if (x < 108 || x > 955) {
+	            floor = floorHeight.floor2; // 3Ãþ¿¡¼­ 2ÃþÀ¸·Î ¶³¾îÁü
+	            if(!jumpState) 
+	            	moveDown(floor);
+	         }
+	      } else if (floor == floorHeight.floor4) {
+	         if (x >= 108 && x <= 600) {
+	            x--;
+	         } else if (x < 108) {
+	            floor = floorHeight.floor3; // 4Ãþ¿¡¼­ 1ÃþÀ¸·Î ¶³¾îÁü
+	            moveDown(floor);
+	         } else if (x > 600) {
+	            floor = floorHeight.floor3; // 4Ãþ¿¡¼­ 3ÃþÀ¸·Î ¶³¾îÁü
+	            if(!jumpState) 
+	            	moveDown(floor);
+	         }
+	      }
    }
 
    public void moveRight() {
@@ -117,7 +126,7 @@ public class Player extends JLabel implements Initable, floorHeight {
       System.out.println("x : " + x);
       System.out.println("y : " + y);
       System.out.println(floor);
-
+      System.out.println(""+jumpState+"");
       if (isRight == false) {
          new Thread(new Runnable() {
             @Override
@@ -258,18 +267,7 @@ public class Player extends JLabel implements Initable, floorHeight {
          new Thread(new Runnable() {
             @Override
             public void run() {
-               if (floor == floorHeight.floor1 && ((x >= 108 && x <= 600) || (x >= 891 && x <= 1178))) {
-                  floor = floorHeight.floor2;
-               } else if (floor == floorHeight.floor2 && ((x >= 108 && x <= 600) || (x >= 891 && x <= 953))) {
-                  floor = floorHeight.floor3;
-               } else if (floor == floorHeight.floor2 && (x < 953 && x < 1178)) {
-                  floor = floorHeight.floor5;
-               } else if (floor == floorHeight.floor3 && x >= 108 && x <= 600) {
-                  floor = floorHeight.floor4;
-               } else if (floor == floorHeight.floor4) {
-                  floor = floorHeight.floor5;
-               }
-               if (floor != floorHeight.floor5) { // Á¡ÇÁ - ¿Ã¶ó°¡±â Á¶°Ç 1
+            		jumpState=true;
                   for (int i = 0; i < 160; i++) {
                      y--;
                      setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
@@ -279,66 +277,76 @@ public class Player extends JLabel implements Initable, floorHeight {
                         e.printStackTrace();
                      }
                   }
-                  if ((x >= 108 && x <= 600) || (x >= 891 && x <= 1176)) { // Á¡ÇÁ - ¶³¾îÁö±â Á¶°Ç 1
-                     for (int i = 0; i < 10; i++) {
-                        y++;
-                        setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
-                        try {
-                           Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                           e.printStackTrace();
-                        }
-                     }
-                  } else if (x > 960 && x < 1178) { // Á¡ÇÁ - ¶³¾îÁö±â Á¶°Ç 2
                      for (int i = 0; i < 160; i++) {
                         y++;
+                        System.out.println("¶³¾îÁü");
                         setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
                         try {
-                           Thread.sleep(5);
+                           Thread.sleep(10);
+                           if(floor==floorHeight.floor1&&((x>=108&&x<=600)||(x>=891&&x<=1178))) {
+                        	   floor=floorHeight.floor2;
+                        	   System.out.println("1->2");
+                        	   while (y < floorHeight.floor2) {
+                                   y++;
+                                   setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
+                                   try {
+                                      Thread.sleep(5);
+                                   } catch (InterruptedException e) {
+                                      e.printStackTrace();
+                                   }
+                                }
+                        	   jumpState=false;
+                        	   return;
+                           }else if(floor==floorHeight.floor2&&(x>=108&&x<=955)) {
+                        	   floor=floorHeight.floor3;
+                        	   System.out.println("2->3");
+                        	   while (y < floorHeight.floor3) {
+                                   y++;
+                                   setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
+                                   try {
+                                      Thread.sleep(5);
+                                   } catch (InterruptedException e) {
+                                      e.printStackTrace();
+                                   }
+                                }
+                        	   jumpState=false;
+                        	   return;
+                           }else if(floor==floorHeight.floor3&&(x>=108&&x<=600)) {
+                        	   floor=floorHeight.floor4;
+                        	  System.out.println("3->4");
+                        	   while (y < floorHeight.floor4) {
+                                   y++;
+                                   setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
+                                   try {
+                                      Thread.sleep(5);
+                                   } catch (InterruptedException e) {
+                                      e.printStackTrace();
+                                   }
+                                }
+                        	   jumpState=false;
+                        	   return;
+                           }else if(floor==floorHeight.floor4&&(x<=108&&x>=600)) {
+                        	   floor=floorHeight.floor4;
+                        	  
+                        	   while (y < floorHeight.floor4) {
+                                   y++;
+                                   setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
+                                   try {
+                                      Thread.sleep(5);
+                                   } catch (InterruptedException e) {
+                                      e.printStackTrace();
+                                   }
+                                }
+                        	   jumpState=false;
+                        	   return;
+                           }
                         } catch (InterruptedException e) {
                            e.printStackTrace();
                         }
                      }
-                  } else { // Á¡ÇÁ - ¶³¾îÁö±â Á¶°Ç 3
-                     for (int i = 0; i < 160; i++) {
-                        y++;
-                        setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
-                        try {
-                           Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                           e.printStackTrace();
-                        }
-                     }
-                  }
-               } else if (floor == floorHeight.floor5) { // Á¡ÇÁ - ¿Ã¶ó°¡±â Á¶°Ç2
-                  for (int i = 0; i < 160; i++) {
-                     y--;
-                     setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
-                     try {
-                        Thread.sleep(5);
-                     } catch (InterruptedException e) {
-                        e.printStackTrace();
-                     }
-                  }
-                  for (int i = 0; i < 160; i++) {
-                     y++;
-                     setLocation(x, y); // ³»ºÎ¿¡ repaint()°¡ Á¸Àç µû·Î ¾ÈÇØµµ µÊ
-                     try {
-                        Thread.sleep(5);
-                     } catch (InterruptedException e) {
-                        e.printStackTrace();
-                     }
-                  }
-                  floor = floorHeight.floor4;
-               }
+                     jumpState=false;
             }
          }).start();
       }
    }
-
-   // ±¸Çö¾ÈÇÔ
-   public void attack() {
-
-   }
-
 }
