@@ -26,15 +26,13 @@ public class BubbleApp extends JFrame implements Initable{
 		setting();
 		batch();
 		listener();
-		
-		//monsterMove.start();
-		
+
 		setVisible(true);
 	}
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		laBackground=new JLabel(new ImageIcon("images/imgTestBG.png"));
+		laBackground=new JLabel(new ImageIcon("images/MPBG.png"));
 		player=new Player3();
 		//player2=new Player2();
 		//monster=new Monster();
